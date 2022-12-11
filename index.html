@@ -55,18 +55,19 @@
         <div class="mx-5 md-mx-l5">
             <div class="inline-block br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
                 <div class="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">Join Google Meet</div>
-                This weekend... &nbsp
+                17-DEC-2022 08:00 PM &nbsp
             </div>
             <div>
 
                 <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 ">Tech Innovation drive</h1>
 
                 <div class="br-8 mt-10 inline-flex">
-                    <input type="text"
+                    <input type="tel"
                         class="input-lg half bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 min-w-25vw br-r-0"
-                        placeholder="Whatsapp Number">
+                        placeholder="Whatsapp Number" id="phone1">
                         <br>
                     <button
+                        onclick="submit1()"
                         class="button-lg bg-indigo-lightest-20 indigo-lightest focus-white fw-300 fs-s3 mr-0 br-l-0">Get Link</button>
                 </div>
                 <div class="white opacity-20 fs-s3 mt-3">No registration required</span>
@@ -75,7 +76,11 @@
     </section>
 
   
+    <section class="card  p-4 mx-4 px-10">
+        <h2 class="white">About</h2>
+        <p class="white">Tech Innovation Drive is a Free online coding bootcamp designed for Entreprenours, Innovation Enthusiasts to help them unleash the true potential.Live classes will be conducted on software development mordern architectures and system designs which will make the candidate primed for converting ideas into reality</p>
 
+    </section>
     <!-- big text -->
     <section class="p-10 md-py-10">
         <div class="w-100pc md-w-70pc mx-auto py-2">
@@ -138,11 +143,11 @@
                     <div class="indigo-lightest fw-300 fs-m1">
                         Advancement <br>
                         <span class="opacity-60"> 
-                            Data Structures <br>
+                            1. Data Structures <br>
 
-                            Algorithms <br>
+                            2. Algorithms <br>
                             
-                            System Design Case Studies (Caching, Message Broker, Api gateway, redis)
+                            3. System Design Case Studies (Caching, Message Broker, Api gateway, redis)
                             
                             
                         </span> </div>
@@ -160,16 +165,17 @@
     <section class="p-10 md-p-l5">
         <div class="br-8 bg-indigo-lightest-10 p-5 md-p-l5 flex flex-wrap md-justify-between md-items-center">
             <div class="w-100pc md-w-33pc">
-                <h2 class="white fs-m4 fw-800">No registration required                </h2>
+                    <p class="white">Email us at : haswit.org@gmail.com</p>
+                    <p class="white">Whatsapp : 9000577040</p>
              
             </div>
             <div class="w-100pc md-w-50pc">
                 <div class="flex flex-wrap my-5">
-                    <input type="text"
+                    <input type="tel"
                         class="input-lg flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                        placeholder="Whatsapp Number">
+                        placeholder="Whatsapp Number" id="phone2">
                         <br>
-                    <button class=" w-100pc button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0" >Get Link</button>
+                    <button onclick="submit2()" class=" w-100pc button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0" >Get Link</button>
                 </div>
             </div>
         </div>
@@ -180,11 +186,49 @@
         <center>         <small class="white items-center">Copyright@2022</small>
         </center>
     </footer>
+
+    
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+
+        function submit2(){
+            var phoneNumber = document.getElementById("phone2").value;
+            var a = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(phoneNumber);
+            if(!a){
+                alert("Please enter a 10 digit mobile number without std code")
+
+            }else{
+                craeteLink(phoneNumber)
+                document.getElementById("phone2").value = "";
+            }
+        }
+        function submit1(){
+            var phoneNumber = document.getElementById("phone1").value;
+            var a = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(phoneNumber);
+            if(!a){
+                                alert("Please enter a 10 digit mobile number without std code")
+            }else{
+                craeteLink(phoneNumber)
+                document.getElementById("phone1").value = "";
+            }
+        }
+
+        function craeteLink(phoneNumber){
+            
+            $.ajax({
+                url: "https://haswit.pythonanywhere.com/innovation?phone=" + phoneNumber,
+                type : "GET",
+                success : function(data){
+                    alert("Congratulations, joining invitaion will be sent on your whatsapp number shortly.")
+                }
+            })
+        }
+
+    </script>
 </body>
 
 </html>
